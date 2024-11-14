@@ -16,6 +16,8 @@ Log_file/
 *.mat
 *.fig
 Results/
+*.vs
+x64/
 參考文件/
 報告/
 農林航測局圖資/
