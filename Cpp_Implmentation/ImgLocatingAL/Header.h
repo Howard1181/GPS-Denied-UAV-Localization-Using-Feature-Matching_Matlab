@@ -21,7 +21,7 @@ class ImgLocate
 
 
 	// 照片讀取資訊
-	string folderPath_camera = "E:/無人機影像定位/CY影像定位實作/豐原空拍_2";
+	string folderPath_camera = "C:/H_F/Ncsist_data/ImageLocating_Algorithm/豐原空拍_2";
 	string PhoInfo_excelFile = "../../FongYuanLog2.csv";
 
 	// 演算法參數
@@ -39,8 +39,8 @@ class ImgLocate
 public:
 	vector<string> getCamImgFiles();
 	vector<vector<string>> getCamImgLog();
-	string CroppedMapPath = "E:/無人機影像定位/CY影像定位實作/Cropped_Map_FU"; // 中文路徑也可以
-	string folderPath_map = "E:/VS/ImgLocation/Map/8KUHD_FongYuan2.png";
+	string CroppedMapPath = "C:/H_F/Ncsist_data/ImageLocating_Algorithm/Cropped_Map_FU"; // 中文路徑也可以
+	string folderPath_map = "C:/H_F/Ncsist_data/ImageLocating_Algorithm/離線地圖/豐原/8KUHD_FongYuan2.png";
 	cv::Mat  puzzleMap(int picture_num);
 	void setResolution(cv::Mat&, double);
 	void setAngle(cv::Mat&, double);
@@ -49,7 +49,6 @@ public:
 	void PresetPhoto(cv::Mat&, cv::Mat&, double, double);
 	cv::Point2d locatingAlgorithm(cv::Mat&, cv::Mat&, double);
 	cv::Point2d PositionCalculation(int, int, int, double, double, cv::Point2d);
-
 
 	// 宣告地圖/空拍基本資訊(如何封裝?)(可用建構子?或是寫一函式)
 	double Map_Width = 4103; // 豐原
