@@ -1,5 +1,5 @@
 function MapCrop()
-    img1 = imread('離線地圖/豐原/8KUHD_FongYuan2.png');
+    img1 = imread('map/8KUHD_FongYuan2.png');
     
     % 圖像調整
     img1 = histeq(img1);
@@ -35,7 +35,7 @@ function MapCrop()
      for j = 1:yStepNum
         n = n + 1;
         P_img1 = Double_img1((j-1)*SkipStep+1:(j-1)*SkipStep+M_img1, (i-1)*SkipStep+1:(i-1)*SkipStep+N_img1, :); % 分割圖像
-        Cut_a = strcat('Cropped_Map_FU\',num2str(n),'.png'); % 儲存的圖片位置及每幅圖片塊的命名
+        Cut_a = strcat('cmap\',num2str(n),'.png'); % 儲存的圖片位置及每幅圖片塊的命名
         imwrite(double(P_img1),Cut_a);        
      end
     end

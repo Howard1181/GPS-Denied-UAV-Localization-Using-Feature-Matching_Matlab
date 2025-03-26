@@ -41,8 +41,7 @@ clear; clc; close all;
  Lat_per_pix = (round(TL_coor(2),8) - round(BL_coor(2),8)) / Map_Height;
  
  % 讀取空拍照片
-%  folderPath_camera = '逢甲空拍'; 
- folderPath_camera = '豐原空拍_2';
+ folderPath_camera = 'photo';
  % 列出資料夾中所有照片
  imageFiles_camera = dir(fullfile(folderPath_camera, '*.jpg'));
 
@@ -52,8 +51,7 @@ clear; clc; close all;
  end
  
  %  讀取照片詳細資料
-%  PhoInfo_excelFile = 'Log.csv'; % 逢甲
- PhoInfo_excelFile = 'FongYuanLog2.csv';
+ PhoInfo_excelFile = 'fdata\FongYuanLog2.csv';
  data = readtable(PhoInfo_excelFile); % 使用 readtable 讀取 Excel
  Excel_dataName_cam = data{:, 1}; % 提取第一列的文件名
 
@@ -63,8 +61,7 @@ clear; clc; close all;
  
  % 打開離線地圖並將拍攝座標標上去
  figure(1)
-%  folderPath_map = ('離線地圖/逢甲/8K_FJU.png'); % 逢甲
- folderPath_map = ('離線地圖/豐原/8KUHD_FongYuan2.png'); % 豐原
+ folderPath_map = ('map\8KUHD_FongYuan2.png'); % 豐原
  img1 = imread(folderPath_map);
  imshow(img1)
  data = readtable(PhoInfo_excelFile); % 使用 readtable 讀取 Excel
@@ -183,7 +180,7 @@ clear; clc; close all;
         
         % 從資料夾中讀取picture_num對應的小圖
 %         CropImg_folderPath = 'Cropped_Map'; % 逢甲
-        CropImg_folderPath = 'Cropped_Map_FU'; % 豐原
+        CropImg_folderPath = 'cmap'; % 豐原
         CropimgName = sprintf('%d.png', picture_num);
         CropimgPath = fullfile(CropImg_folderPath, CropimgName);
         if exist(CropimgPath, 'file')
@@ -202,55 +199,55 @@ clear; clc; close all;
         if (picture_num-yStepNum-1)<1 || (picture_num-yStepNum-1)>xyStepNum
             MapNum1 = zeros([CropSize,CropSize,3]);
         else
-            MapNum1 = im2double(imread(['Cropped_Map_FU\',num2str(picture_num-yStepNum-1),'.png']));
+            MapNum1 = im2double(imread(['cmap\',num2str(picture_num-yStepNum-1),'.png']));
         end
 
         if (picture_num-yStepNum)<1 || (picture_num-yStepNum)>xyStepNum
             MapNum2 =zeros([CropSize,CropSize,3]);
         else
-            MapNum2 = im2double(imread(['Cropped_Map_FU\',num2str(picture_num-yStepNum),'.png']));
+            MapNum2 = im2double(imread(['cmap\',num2str(picture_num-yStepNum),'.png']));
         end
 
         if (picture_num-yStepNum+1)<1 || (picture_num-yStepNum+1)>xyStepNum
             MapNum3 =zeros([CropSize,CropSize,3]);
         else
-            MapNum3 = im2double(imread(['Cropped_Map_FU\',num2str(picture_num-yStepNum+1),'.png']));
+            MapNum3 = im2double(imread(['cmap\',num2str(picture_num-yStepNum+1),'.png']));
         end
 
         if (picture_num-1)<1 || (picture_num-1)>xyStepNum
             MapNum4 =zeros([CropSize,CropSize,3]);
         else
-            MapNum4 = im2double(imread(['Cropped_Map_FU\',num2str(picture_num-1),'.png']));
+            MapNum4 = im2double(imread(['cmap\',num2str(picture_num-1),'.png']));
         end
 
         if (picture_num)<1 || (picture_num)>xyStepNum
             MapNum5 =zeros([CropSize,CropSize,3]);
         else
-            MapNum5 = im2double(imread(['Cropped_Map_FU\',num2str(picture_num),'.png']));
+            MapNum5 = im2double(imread(['cmap\',num2str(picture_num),'.png']));
         end
 
         if (picture_num+1)<1 || (picture_num+1)>xyStepNum
             MapNum6 =zeros([CropSize,CropSize,3]);
         else
-            MapNum6 = im2double(imread(['Cropped_Map_FU\',num2str(picture_num+1),'.png']));
+            MapNum6 = im2double(imread(['cmap\',num2str(picture_num+1),'.png']));
         end
 
         if (picture_num+yStepNum-1)<1 || (picture_num+yStepNum-1)>xyStepNum
             MapNum7 =zeros([CropSize,CropSize,3]);
         else    
-            MapNum7 = im2double(imread(['Cropped_Map_FU\',num2str(picture_num+yStepNum-1),'.png']));
+            MapNum7 = im2double(imread(['cmap\',num2str(picture_num+yStepNum-1),'.png']));
         end
 
         if (picture_num+yStepNum)<1 || (picture_num+yStepNum)>xyStepNum
             MapNum8 =zeros([CropSize,CropSize,3]);
         else    
-            MapNum8 = im2double(imread(['Cropped_Map_FU\',num2str(picture_num+yStepNum),'.png']));
+            MapNum8 = im2double(imread(['cmap\',num2str(picture_num+yStepNum),'.png']));
         end
 
         if (picture_num+yStepNum+1)<1 || (picture_num+yStepNum+1)>xyStepNum
             MapNum9 =zeros([CropSize,CropSize,3]);
         else
-            MapNum9 = im2double(imread(['Cropped_Map_FU\',num2str(picture_num+yStepNum+1),'.png']));
+            MapNum9 = im2double(imread(['cmap\',num2str(picture_num+yStepNum+1),'.png']));
         end
 
         % 避免上下邊界的誤判
@@ -284,7 +281,7 @@ clear; clc; close all;
         title('無人機空拍圖')
 
         % 並把圖片儲存起來
-        PictureName = strcat('小地圖拼接/Puzzle99.png'); % 將合成圖片儲存至想要的位置並命名
+        PictureName = strcat('puzzle/Puzzle99.png'); % 將合成圖片儲存至想要的位置並命名
         imwrite(double(Puzzle_c),PictureName);
 
         % 調整圖片
