@@ -11,6 +11,9 @@ This MATLAB version is designed for fast prototyping and visualization of the pe
 
 ## Requirements
 - MATLAB R2019a or newer
+- Toolbox
+  - Image Processing Toolbox
+  - Computer Vision Toolbox
 
 ## Getting Started
 ### 1. Clone the Repository
