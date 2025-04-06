@@ -9,6 +9,9 @@ This repository provides a **MATLAB-based implementation** of a GPS-denied UAV l
 
 This MATLAB version is designed for fast prototyping and visualization of the perception pipeline.
 
+## Requirements
+- MATLAB R2019a or newer
+
 ## Getting Started
 ### 1. Clone the Repository
 ```
